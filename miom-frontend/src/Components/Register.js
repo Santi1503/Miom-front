@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';  // Para redirigir al usuario después del registro
 
 const Register = () => {
   const [fullName, setFullName] = useState('');
@@ -10,6 +11,7 @@ const Register = () => {
   const [errors, setErrors] = useState({});
   const [serverError, setServerError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const navigate = useNavigate();  // Hook de React Router para redirigir
 
   // Validación del formulario
   const validateForm = () => {
@@ -42,9 +44,11 @@ const Register = () => {
       formErrors.confirmPassword = 'Las contraseñas no coinciden';
     }
 
-    // Validar teléfono (opcional)
-    const phoneRegex = /^\d{10,14}$/; // Validar formato básico de teléfono
-    if (phone && !phoneRegex.test(phone)) {
+    // Validar teléfono (obligatorio)
+    const phoneRegex = /^\+?[1-9]\d{1,14}$/;
+    if (!phone) {
+      formErrors.phone = 'El número de teléfono es obligatorio';
+    } else if (!phoneRegex.test(phone)) {
       formErrors.phone = 'El formato del número de teléfono no es válido';
     }
 
@@ -55,15 +59,17 @@ const Register = () => {
   // Manejo del envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Resetear mensajes de error y éxito
     setServerError('');
     setSuccessMessage('');
 
-    // Si el formulario no es válido, detener la ejecución
+    // Validar el formulario
     if (!validateForm()) {
       return;
     }
 
-    // Crear el objeto de usuario
+    // Crear el objeto de usuario con los datos del formulario
     const user = {
       fullName,
       email,
@@ -87,18 +93,15 @@ const Register = () => {
         throw new Error(data.msg || 'Error del servidor');
       }
 
-      // Si el registro es exitoso
-      setSuccessMessage('Registro exitoso. ¡Ya puedes iniciar sesión!');
-      setFullName('');
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
-      setPhone('');
-      setErrors({});
+      // Si el registro es exitoso, guarda el token y redirige al usuario
+      localStorage.setItem('token', data.token);  // Guardar el token en localStorage
+      setSuccessMessage('Registro exitoso. Redirigiendo...');
+      navigate('/home');  // Redirigir al dashboard o página protegida
     } catch (error) {
       setServerError(error.message);
     }
   };
+
 
   return (
     <Container>
