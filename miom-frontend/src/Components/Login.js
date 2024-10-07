@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';  // Para redirigir después del login
+import '../CSS/Login.css'
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -36,45 +37,47 @@ const Login = () => {
   };
 
   return (
-    <Container>
-      <Row className="justify-content-md-center mt-5">
-        <Col md={6}>
-          <h2 className='text-center mb-4'>Welcome to Miom</h2>
-          
-          {/* Mostrar mensaje de error si ocurre */}
-          {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-          {successMessage && <Alert variant="success">{successMessage}</Alert>}
+    <Container fluid className="login-container">
+      <Row className="justify-content-center align-items-center h-100">
+        <Col xs={12} sm={8} md={6} lg={4}> {/* Se adapta a diferentes tamaños de pantalla */}
+          <h2 className="text-center login-header">Bienvenido a Miom</h2>
+          <img src={require('../assets/MiomLogo.png')} alt="Miom Logo" className="logo mb-3" />
+          <div className="login-box">
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="formEmail" className="mb-3">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Ingresa tu email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </Form.Group>
 
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formEmail" className="mb-3">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </Form.Group>
+              <Form.Group controlId="formPassword" className="mb-3">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Ingresa tu contraseña"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </Form.Group>
 
-            <Form.Group controlId="formPassword" className="mb-3">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </Form.Group>
+              <div className="text-end mb-3">
+                <a href="/forgot-password">Forgot Password</a>
+              </div>
 
-            <Button variant="primary" type="submit" className="w-100">
-              Log In
-            </Button>
-          </Form>
+              <Button variant="primary" type="submit" className="w-100 mb-2 login-button">
+                Log in
+              </Button>
 
-          <div className="mt-3 text-center">
-            <a href="/register">Don't have an account? Register here</a>
+              <div className="text-center">
+                <p>¿No tienes una cuenta? <a href="/register">Registrarse</a></p>
+              </div>
+            </Form>
           </div>
         </Col>
       </Row>

@@ -1,0 +1,55 @@
+/* Logo */
+.logo {
+    display: block;
+    margin: 0 auto; /* Centrar el logo */
+    height: 100px;
+    width: auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Estilo del cuadro de registro */
+.register-container {
+    height: 100vh;
+    background-color: #F5F5DC;
+}
+
+.register-box {
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+/* Estilo del encabezado */
+.register-header {
+    background-color: #A9D18E;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+    color: #4A4A4A;
+    text-align: center;
+    font-size: 30px;
+}
+
+/* Estilo de los botones */
+.register-button {
+    background-color: #4A4A4A !important;
+    border-color: #4A4A4A !important;
+    color: #fff;
+    border-radius: 8px;
+}
+
+.register-button:hover {
+    background-color: #333 !important;
+    border-color: #333;
+}
+
+/* Estilo de los enlaces */
+a {
+    color: #4A4A4A;
+}
+
+a:hover {
+    color: #333;
+}

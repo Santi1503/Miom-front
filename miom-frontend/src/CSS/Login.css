@@ -1,0 +1,58 @@
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    height: 100px; /* Ajusta el tamaño del logo */
+    width: auto; /* Mantiene la proporción del logo */
+    border-radius: 20px;
+}
+
+/* Estilo del cuadro de login */
+.login-container {
+    height: 100vh;
+    background-color: #F5F5DC;
+}
+
+.login-box {
+    padding: 20px;
+    background-color: #FFFFFF;
+    /* Blanco */
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+/* Estilo del encabezado */
+.login-header {
+    background-color: #A9D18E;
+    /* Verde del encabezado */
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    color: #4A4A4A;
+    text-align: center;
+}
+
+/* Estilo de los botones */
+.login-button {
+    background-color: #4A4A4A !important;
+    /* Gris oscuro */
+    border-color: #4A4A4A !important;
+    color: #fff;
+}
+
+.login-button:hover {
+    background-color: #333 !important;
+    /* Gris más oscuro para el hover */
+    border-color: #333 ;
+}
+
+/* Estilo de los enlaces */
+a {
+    color: #4A4A4A;
+    /* Gris oscuro */
+}
+
+a:hover {
+    color: #333;
+    /* Cambiar el color del enlace al pasar el ratón */
+}

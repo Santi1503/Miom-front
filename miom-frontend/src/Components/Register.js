@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';  // Para redirigir al usuario después del registro
+import '../CSS/Register.css'; // Asegúrate de tener el CSS enlazado correctamente
 
 const Register = () => {
   const [fullName, setFullName] = useState('');
@@ -102,106 +103,95 @@ const Register = () => {
     }
   };
 
-
   return (
-    <Container>
-      <Row className="justify-content-md-center mt-5">
-        <Col md={6}>
-          <h2 className="text-center mb-4">Regístrate en Miom</h2>
+    <Container fluid className="register-container">
+      <Row className="justify-content-center align-items-center h-100">
+        <Col xs={12} sm={8} md={6} lg={4}> {/* Se adapta a diferentes tamaños de pantalla */}
+          <h2 className="text-center register-header">Registrate en Miom</h2>
+          <img src={require('../assets/MiomLogo.png')} alt="Miom Logo" className="logo mb-3" />
+          <div className="register-box">
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="formFullName" className="mb-3">
+                <Form.Label>Nombre Completo</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Ingresa tu nombre completo"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  isInvalid={!!errors.fullName}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.fullName}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-          {/* Mostrar mensajes de éxito o error */}
-          {serverError && <Alert variant="danger">{serverError}</Alert>}
-          {successMessage && <Alert variant="success">{successMessage}</Alert>}
+              <Form.Group controlId="formEmail" className="mb-3">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Ingresa tu email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  isInvalid={!!errors.email}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.email}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-          <Form onSubmit={handleSubmit}>
-            {/* Nombre completo */}
-            <Form.Group controlId="formFullName" className="mb-3">
-              <Form.Label>Nombre Completo</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Ingresa tu nombre completo"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                isInvalid={!!errors.fullName}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.fullName}
-              </Form.Control.Feedback>
-            </Form.Group>
+              <Form.Group controlId="formPhone" className="mb-3">
+                <Form.Label>Número de Teléfono</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Ingresa tu número de teléfono"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  isInvalid={!!errors.phone}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.phone}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-            {/* Email */}
-            <Form.Group controlId="formEmail" className="mb-3">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Ingresa tu email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                isInvalid={!!errors.email}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.email}
-              </Form.Control.Feedback>
-            </Form.Group>
+              <Form.Group controlId="formPassword" className="mb-3">
+                <Form.Label>Contraseña</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Ingresa tu contraseña"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  isInvalid={!!errors.password}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.password}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-            {/* Teléfono */}
-            <Form.Group controlId="formPhone" className="mb-3">
-              <Form.Label>Número de Teléfono</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Ingresa tu número de teléfono"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                isInvalid={!!errors.phone}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.phone}
-              </Form.Control.Feedback>
-            </Form.Group>
+              <Form.Group controlId="formConfirmPassword" className="mb-3">
+                <Form.Label>Confirma tu Contraseña</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Confirma tu contraseña"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  isInvalid={!!errors.confirmPassword}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.confirmPassword}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-            {/* Contraseña */}
-            <Form.Group controlId="formPassword" className="mb-3">
-              <Form.Label>Contraseña</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Ingresa tu contraseña"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                isInvalid={!!errors.password}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.password}
-              </Form.Control.Feedback>
-            </Form.Group>
+              <Form.Group controlId="formTerms" className="mb-3">
+                <Form.Check type="checkbox" label="Acepto los términos y condiciones" required />
+              </Form.Group>
 
-            {/* Confirmación de contraseña */}
-            <Form.Group controlId="formConfirmPassword" className="mb-3">
-              <Form.Label>Confirma tu Contraseña</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Confirma tu contraseña"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                isInvalid={!!errors.confirmPassword}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.confirmPassword}
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            {/* Aceptar términos */}
-            <Form.Group controlId="formTerms" className="mb-3">
-              <Form.Check type="checkbox" label="Acepto los términos y condiciones" required />
-            </Form.Group>
-
-            {/* Botón de registro */}
-            <Button variant="primary" type="submit" className="w-100">
-              Registrarse
-            </Button>
-          </Form>
-
-          <div className="mt-3 text-center">
-            <a href="/login">¿Ya tienes una cuenta? Inicia sesión aquí</a>
+              <Button variant="primary" type="submit" className="w-100 register-button">
+                Registrarse
+              </Button>
+            </Form>
+            <div className="mt-3 text-center">
+              <p>¿Ya tienes una cuenta? <a href="/login">Inicia sesión aquí</a></p>
+            </div>
           </div>
         </Col>
       </Row>
