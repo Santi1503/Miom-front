@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';  // Para redirigir después del login
-import '../CSS/Login.css'
+import '../CSS/Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -12,7 +12,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage('');
+    setErrorMessage('Holaa');
     setSuccessMessage('');
 
     try {
@@ -32,7 +32,7 @@ const Login = () => {
         throw new Error(data.msg || 'Credenciales incorrectas');
       }
     } catch (error) {
-      setErrorMessage(error.message);
+      setErrorMessage(error.message);  // Establecer el mensaje de error
     }
   };
 
@@ -42,7 +42,12 @@ const Login = () => {
         <Col xs={12} sm={8} md={6} lg={4}> {/* Se adapta a diferentes tamaños de pantalla */}
           <h2 className="text-center login-header">Bienvenido a Miom</h2>
           <img src={require('../assets/MiomLogo.png')} alt="Miom Logo" className="logo mb-3" />
+
           <div className="login-box">
+            {/* Mostrar el mensaje de error si existe */}
+            {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+            {successMessage && <Alert variant="success">{successMessage}</Alert>}
+
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formEmail" className="mb-3">
                 <Form.Label>Email</Form.Label>
@@ -67,11 +72,11 @@ const Login = () => {
               </Form.Group>
 
               <div className="text-end mb-3">
-                <a href="/forgot-password">Forgot Password</a>
+                <a href="/forgot-password">¿Olvidaste tu contraseña?</a>
               </div>
 
               <Button variant="primary" type="submit" className="w-100 mb-2 login-button">
-                Log in
+                Iniciar sesión
               </Button>
 
               <div className="text-center">

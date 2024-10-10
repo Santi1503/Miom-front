@@ -6,6 +6,8 @@ import Home from './pages/Home'
 import Calendar from './pages/Calendar'
 import Notes from './pages/Notes'
 import UsersList from './Components/UsersList';
+import ForgotPassword from './Components/ForgotPassword'
+import ResetPassword from './Components/ResetPassword'
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
         <Route path='/notes' element={<Notes />} />
         <Route path='/register' element={<Register />} />
         <Route path="/users" element={<UsersList />} />
+        <Route path='/forgot-password' element={<ForgotPassword />} />
+        <Route path='/reset-password' element={<ResetPassword />} />
       </Routes>
     </Router>
   );
