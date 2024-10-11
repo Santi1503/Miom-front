@@ -12,7 +12,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage('Holaa');
+    setErrorMessage('');
     setSuccessMessage('');
 
     try {

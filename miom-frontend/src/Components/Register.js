@@ -110,6 +110,9 @@ const Register = () => {
           <h2 className="text-center register-header">Registrate en Miom</h2>
           <img src={require('../assets/MiomLogo.png')} alt="Miom Logo" className="logo mb-3" />
           <div className="register-box">
+            {/* Mostrar mensajes de éxito o error */}
+            {serverError && <Alert variant="danger">{serverError}</Alert>}
+            {successMessage && <Alert variant="success">{successMessage}</Alert>}
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formFullName" className="mb-3">
                 <Form.Label>Nombre Completo</Form.Label>
@@ -181,8 +184,11 @@ const Register = () => {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group controlId="formTerms" className="mb-3">
-                <Form.Check type="checkbox" label="Acepto los términos y condiciones" required />
+              <Form.Group controlId="formTerms" className="mb-3 d-flex align-items-center">
+                <Form.Check
+                  required
+                  label={<>Acepto los <a href="/terms-conditions" target="_blank" rel="noopener noreferrer">términos y condiciones</a></>}
+                />
               </Form.Group>
 
               <Button variant="primary" type="submit" className="w-100 register-button">
